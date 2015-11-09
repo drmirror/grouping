@@ -46,5 +46,53 @@ Dewey           0.400      0.400      0.600      0.800      0.800      0.200    
 
 We can see that Huey, Louie and Dewey form the tightest cluster with a distance of only 0.2 among each other (only the first name is different).  Donald and Daisy are close, but not *that* close (0.4).  Mickey and Minnie, at 0.6, are even further away, and so on.
 
-Calling the method ```mergeOnce(threshold)``` finds the closest pair in the set whose distance is below the threshold and merges them into one cluster, updating the distances to all other elements of the set to be the minimum of the distances of the individual elements.  For our people from Duckburg, calling ```mergeOnce()``` repeatedly results in the following sequence of matrixes.
+Calling the method ```mergeOnce(threshold)``` finds the closest pair in the set whose distance is below the threshold and merges them into one cluster, updating the distances to all other elements of the set to be the minimum of the distances of the individual elements.  For our people from Duckburg, calling ```mergeOnce()``` repeatedly with a threshold of 1.0 (no limits on merging) results in the following sequence of matrixes.
 
+```
+               Donald      Daisy    Scrooge     Mickey     Minnie      Dewey
+Daisy           0.400
+Scrooge         0.600      0.600
+Mickey          0.800      0.800      0.800
+Minnie          0.800      0.800      0.800      0.600
+Dewey           0.400      0.400      0.600      0.800      0.800
+H/L             0.400      0.400      0.600      0.800      0.800      0.200
+```
+
+Huey and Louie have been turned into a group, Dewey still sits at a distance of 0.2 from them.
+
+```
+               Donald      Daisy    Scrooge     Mickey     Minnie
+Daisy           0.400
+Scrooge         0.600      0.600
+Mickey          0.800      0.800      0.800
+Minnie          0.800      0.800      0.800      0.600
+D/H/L           0.400      0.400      0.600      0.800      0.800
+```
+
+Now we have a group of Dewey, Huey and Louie (D/H/L), everybody else is still separate.  The following iterations first group Donald and Daisy, then put them into a group with Huey, Louie and Duey.
+
+```
+              Scrooge     Mickey     Minnie      D/H/L
+Mickey          0.800
+Minnie          0.800      0.600
+D/H/L           0.600      0.800      0.800
+D/D             0.600      0.800      0.800      0.400
+
+              Scrooge     Mickey     Minnie
+Mickey          0.800
+Minnie          0.800      0.600
+D/H/L/D/D       0.600      0.800      0.800
+```
+
+Next, Mickey and Minnie are grouped, while Scrooge remains separate.  Finally, Scrooge joins the Ducks, before finally, all inhabitants of Duckburg are clustered into one and the same group.
+
+```
+              Scrooge  D/H/L/D/D
+D/H/L/D/D       0.600
+M/M             0.800      0.800
+
+                  M/M
+S/D/H/L/D/D       0.800
+
+M/M/S/D/H/L/D/D  ./.
+```
