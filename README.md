@@ -73,7 +73,7 @@ Minnie          0.800      0.800      0.800      0.600
 D/H/L           0.400      0.400      0.600      0.800      0.800
 ```
 
-Now we have a group of Dewey, Huey and Louie (D/H/L), everybody else is still separate.  The following iterations first group Donald and Daisy, then put them into a group with Huey, Louie and Duey.
+Now we have a group of Dewey, Huey and Louie (D/H/L), everybody else is still separate.  The following iterations first group Donald and Daisy, then put them into a group with Huey, Louie and Dewey.
 
 ```
               Scrooge     Mickey     Minnie      D/H/L
