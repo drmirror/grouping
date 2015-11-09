@@ -1,5 +1,9 @@
 # grouping
-Java implementation of single-linkage clustering. The main class is [net.drmirror.GroupingMatrix](src/net/drmirror/GroupingMatrix.java). For a demo, see [net.drmirror.test.MatrixDemo](src/net/drmirror/test/MatrixDemo.java) and [net.drmirror.test.NumberMatrix](src/net/drmirror/test/NumberMatrix.java). 
+Java implementation of single-linkage clustering. This code follows [the Wikipedia article on the subject](https://en.wikipedia.org/wiki/Single-linkage_clustering), implementing the naive, cubic algorithm to do the clustering. I didn't get around to doing the optimized, quadratic one yet.
+
+The main class is [net.drmirror.GroupingMatrix](src/net/drmirror/GroupingMatrix.java). For a demo, see [net.drmirror.test.MatrixDemo](src/net/drmirror/test/MatrixDemo.java) and [net.drmirror.test.NumberMatrix](src/net/drmirror/test/NumberMatrix.java). 
+
+# MatrixDemo Example
 
 The [MatrixDemo](src/net/drmirror/MatrixDemo) uses a set of eight people from Duckburg and groups
 them by similarity. 
@@ -44,7 +48,7 @@ Louie           0.400      0.400      0.600      0.800      0.800      0.200
 Dewey           0.400      0.400      0.600      0.800      0.800      0.200      0.200
 ```
 
-We can see that Huey, Louie and Dewey form the tightest cluster with a distance of only 0.2 among each other (only the first name is different).  Donald and Daisy are close, but not *that* close (0.4).  Mickey and Minnie, at 0.6, are even further away, and so on.
+We can see that Huey, Louie and Dewey form the tightest cluster with a distance of only 0.2 among each other (only the first name is different).  Donald and Daisy are close, but not *that* close (0.4).  Mickey and Minnie, at 0.6, are even further apart, and so on.
 
 Calling the method ```mergeOnce(threshold)``` finds the closest pair in the set whose distance is below the threshold and merges them into one cluster, updating the distances to all other elements of the set to be the minimum of the distances of the individual elements.  For our people from Duckburg, calling ```mergeOnce()``` repeatedly with a threshold of 1.0 (no limits on merging) results in the following sequence of matrixes.
 
@@ -84,7 +88,7 @@ Minnie          0.800      0.600
 D/H/L/D/D       0.600      0.800      0.800
 ```
 
-Next, Mickey and Minnie are grouped, while Scrooge remains separate.  Finally, Scrooge joins the Ducks, before finally, all inhabitants of Duckburg are clustered into one and the same group.
+Next, Mickey and Minnie are grouped, while Scrooge remains separate.  He joins the Ducks in the next step, before finally, all inhabitants of Duckburg are clustered into one and the same group.
 
 ```
               Scrooge  D/H/L/D/D
@@ -92,7 +96,7 @@ D/H/L/D/D       0.600
 M/M             0.800      0.800
 
                   M/M
-S/D/H/L/D/D       0.800
+S/D/H/L/D/D     0.800
 
-M/M/S/D/H/L/D/D  ./.
+M/M/S/D/H/L/D/D   ./.
 ```
