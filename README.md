@@ -21,7 +21,7 @@ Dewey     | Duck      | kids@duck.com  | 1234  | US
 
 You can see that Donald and Daisy have different e-mail addresses but the same phone number. Scrooge has a different e-mail address *and* a different phone number and is thus "further away". Mickey and Minnie have different e-mail addresses and different phone numbers, but they do share the same last name. Finally, Huey, Louie and Dewey have the same e-mail address and the same phone number, which also happens to be the same as Donald's and Daisy's. (Any similarities with actual people from Duckburg are purely coincidental.)
 
-As a distance function, we use the number of equal attributes between two records, normalized by the total number of attributes.  Thus, two records where all attributes are equal have a distance of 0, while two records where all attributes are different have a distance of 1.
+As a distance function, we use the number of equal attributes between two records, normalized by the total number of attributes.  Thus, two records where all attributes are equal have a distance of 0, while two records where all attributes are different have a distance of 1.  If only one attribute is different, that's a distance of 0.2.
 
 ```java
 	public double distance (TestItem a, TestItem b) {
