@@ -153,6 +153,15 @@ public class GroupingMatrix<Item> {
 		return result;
 	}
 	
+	public List<Integer> getClusters (int size_threshold) {
+		List<Integer> result = new ArrayList<Integer>();
+		for (int i=0; i<groups.size(); i++) {
+			List<Integer> group = groups.get(i);
+			if (group.size() >= size_threshold) result.add(i);
+		}
+		return result;
+	}
+	
 	/**
 	 * Returns the current size of the matrix, which is the
 	 * total number of groups.
