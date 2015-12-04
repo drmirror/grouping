@@ -33,7 +33,7 @@ public class NumberMatrix {
 				}
 		);
 		System.out.println("size before merge: " + matrix.size());
-		matrix.merge(0.00002);
+		matrix.merge(0.0002);
 		System.out.println("size after merge:  " + matrix.size());
 		for (int i=0; i<matrix.size(); i++) {
 			System.out.printf("%d %s\n", i, matrix.getGroupItems(i));
