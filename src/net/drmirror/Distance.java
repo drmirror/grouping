@@ -58,6 +58,12 @@ public class Distance {
 		    +  0.2 * apellido1_distance;
 	}
 	
+	public static GroupingStrategy<Document> nameStrategy = new GroupingStrategy<Document>() {
+		public double distance (Document a, Document b) {
+			return nameDistance(a, b);
+		}
+	};
+	
 	private static double componentDistance(String a, String b, double missingDistance) {
 		if (a.equals("") && b.equals("")) {
 			return 0.0;
