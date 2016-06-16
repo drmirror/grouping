@@ -153,13 +153,30 @@ public class GroupingMatrix<Item> {
 		return result;
 	}
 	
-	public List<Integer> getClusters (int size_threshold) {
+	public List<Integer> getGroups (int size_threshold) {
 		List<Integer> result = new ArrayList<Integer>();
 		for (int i=0; i<groups.size(); i++) {
 			List<Integer> group = groups.get(i);
 			if (group.size() >= size_threshold) result.add(i);
 		}
 		return result;
+	}
+	
+	/**
+	 * Returns the maximum distance between any two elements of the group i.
+	 * @param i index of the group
+	 * @return the distance
+	 */
+	public double intraGroupDistance (int i) {
+	    double maxDistance = 0.0;
+	    List<Item> items = getGroupItems(i);
+	    for (Item a : items) {
+	        for (Item b : items) {
+	            double distance = strategy.distance(a, b);
+	            if (distance > maxDistance) maxDistance = distance;
+	        }
+	    }
+	    return maxDistance;
 	}
 	
 	/**
