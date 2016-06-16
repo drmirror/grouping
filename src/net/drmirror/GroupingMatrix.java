@@ -153,7 +153,7 @@ public class GroupingMatrix<Item> {
 		return result;
 	}
 	
-	public List<Integer> getGroups (int size_threshold) {
+	public List<Integer> getGroupsWithMinimumSize (int size_threshold) {
 		List<Integer> result = new ArrayList<Integer>();
 		for (int i=0; i<groups.size(); i++) {
 			List<Integer> group = groups.get(i);
